@@ -123,6 +123,43 @@
       inset 0 1px 0 hsl(var(--glass-border));
   }
 
+  /* White Section Card - Overlapping effect */
+  .section-card {
+    @apply relative bg-white text-gray-900;
+    border-radius: 3rem 3rem 0 0;
+    margin-top: -3rem;
+    box-shadow: 
+      0 -20px 60px rgba(0, 0, 0, 0.15),
+      0 -4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .section-card-alt {
+    @apply relative;
+    background: hsl(248 15% 96%);
+    color: hsl(220 20% 15%);
+    border-radius: 3rem 3rem 0 0;
+    margin-top: -3rem;
+    box-shadow: 
+      0 -20px 60px rgba(0, 0, 0, 0.1),
+      0 -4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Light theme card for white sections */
+  .card-light {
+    @apply rounded-2xl border border-gray-200 bg-white;
+    box-shadow: 
+      0 4px 20px rgba(0, 0, 0, 0.06),
+      0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .card-light-alt {
+    @apply rounded-2xl border border-gray-100;
+    background: hsl(248 15% 98%);
+    box-shadow: 
+      0 4px 20px rgba(0, 0, 0, 0.04),
+      0 1px 3px rgba(0, 0, 0, 0.02);
+  }
+
   /* Glass Navbar */
   .glass-nav {
     @apply rounded-full border border-white/10 backdrop-blur-2xl;
@@ -132,12 +169,9 @@
       inset 0 1px 0 hsl(0 0% 100% / 0.05);
   }
 
-  /* GDG Gradient Text */
+  /* GDG Gradient Text - Removed rainbow, using solid color */
   .gdg-gradient-text {
-    background: var(--gradient-gdg);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    @apply text-gdg-blue;
   }
 
   /* Glow Effects */
@@ -154,8 +188,7 @@
 
   /* Timeline Dot */
   .timeline-dot {
-    @apply relative flex h-4 w-4 items-center justify-center rounded-full;
-    background: var(--gradient-gdg);
+    @apply relative flex h-4 w-4 items-center justify-center rounded-full bg-gdg-blue;
     box-shadow: 0 0 20px hsl(217 91% 60% / 0.5);
   }
 
@@ -166,15 +199,20 @@
 
   /* Team Card Hover */
   .team-card {
-    @apply glass-card p-6 transition-all duration-500;
+    @apply card-light p-6 transition-all duration-500;
   }
 
   .team-card:hover {
     @apply -translate-y-2;
     box-shadow: 
-      0 20px 40px hsl(0 0% 0% / 0.4),
-      0 0 60px hsl(217 91% 60% / 0.2),
-      inset 0 1px 0 hsl(0 0% 100% / 0.1);
+      0 20px 40px rgba(0, 0, 0, 0.1),
+      0 0 40px hsl(217 91% 60% / 0.1);
+  }
+
+  /* Parallax Elements */
+  .parallax-shape {
+    @apply absolute pointer-events-none;
+    will-change: transform;
   }
 }
 

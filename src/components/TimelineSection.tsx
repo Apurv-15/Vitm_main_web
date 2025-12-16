@@ -1,27 +1,32 @@
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Timeline } from "@/components/ui/timeline";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const timelineData = [
   {
     title: "2024",
     content: (
       <div>
-        <p className="mb-6 text-sm md:text-base font-normal text-muted-foreground">
+        <p className="mb-6 text-sm md:text-base font-normal text-gray-600">
           A groundbreaking year for GDG VIT with record-breaking events and community growth.
         </p>
         <div className="mb-6">
-          <div className="flex items-center gap-2 text-sm text-foreground mb-2">
+          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-blue" />
             DevFest 2024 - 500+ attendees
           </div>
-          <div className="flex items-center gap-2 text-sm text-foreground mb-2">
+          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-red" />
             Android Study Jam - 200+ developers
           </div>
-          <div className="flex items-center gap-2 text-sm text-foreground mb-2">
+          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-yellow" />
             Cloud Study Jam - 150+ participants
           </div>
-          <div className="flex items-center gap-2 text-sm text-foreground">
+          <div className="flex items-center gap-2 text-sm text-gray-800">
             <span className="w-2 h-2 rounded-full bg-gdg-green" />
             Flutter Forward - 180+ attendees
           </div>
@@ -41,19 +46,19 @@ const timelineData = [
     title: "2023",
     content: (
       <div>
-        <p className="mb-6 text-sm md:text-base font-normal text-muted-foreground">
+        <p className="mb-6 text-sm md:text-base font-normal text-gray-600">
           Expanded our reach with hybrid events and international speaker sessions.
         </p>
         <div className="mb-6">
-          <div className="flex items-center gap-2 text-sm text-foreground mb-2">
+          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-green" />
             Google I/O Extended - Virtual & In-person
           </div>
-          <div className="flex items-center gap-2 text-sm text-foreground mb-2">
+          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-yellow" />
             Compose Camp - 300+ participants
           </div>
-          <div className="flex items-center gap-2 text-sm text-foreground">
+          <div className="flex items-center gap-2 text-sm text-gray-800">
             <span className="w-2 h-2 rounded-full bg-gdg-blue" />
             Web Development Bootcamp - 6 weeks
           </div>
@@ -73,19 +78,19 @@ const timelineData = [
     title: "2022",
     content: (
       <div>
-        <p className="mb-6 text-sm md:text-base font-normal text-muted-foreground">
+        <p className="mb-6 text-sm md:text-base font-normal text-gray-600">
           Restarted in-person events post-pandemic with renewed energy and enthusiasm.
         </p>
         <div className="mb-6">
-          <div className="flex items-center gap-2 text-sm text-foreground mb-2">
+          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-red" />
             DevFest 2022 - First in-person event
           </div>
-          <div className="flex items-center gap-2 text-sm text-foreground mb-2">
+          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-blue" />
             ML Study Jam - AI/ML workshops
           </div>
-          <div className="flex items-center gap-2 text-sm text-foreground">
+          <div className="flex items-center gap-2 text-sm text-gray-800">
             <span className="w-2 h-2 rounded-full bg-gdg-green" />
             Hackathon 2022 - 50+ projects
           </div>
@@ -104,9 +109,61 @@ const timelineData = [
 ];
 
 export default function TimelineSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const shape1Ref = useRef<HTMLDivElement>(null);
+  const shape2Ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Parallax shapes
+      if (shape1Ref.current) {
+        gsap.to(shape1Ref.current, {
+          y: -150,
+          rotation: 20,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.5,
+          },
+        });
+      }
+      if (shape2Ref.current) {
+        gsap.to(shape2Ref.current, {
+          y: -80,
+          rotation: -15,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 2,
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="timeline" className="relative w-full overflow-clip bg-background">
-      <Timeline data={timelineData} />
+    <section
+      id="timeline"
+      ref={sectionRef}
+      className="section-card-alt relative w-full overflow-clip z-20"
+    >
+      {/* Parallax Shapes */}
+      <div
+        ref={shape1Ref}
+        className="parallax-shape w-72 h-72 rounded-full bg-gdg-yellow/10 blur-3xl -top-10 right-10"
+      />
+      <div
+        ref={shape2Ref}
+        className="parallax-shape w-40 h-40 rounded-full bg-gdg-blue/10 blur-2xl bottom-40 -left-10"
+      />
+
+      <div className="relative z-10">
+        <Timeline data={timelineData} />
+      </div>
     </section>
   );
 }
