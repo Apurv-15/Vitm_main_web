@@ -55,7 +55,8 @@ export default function Footer() {
     <footer
       id="contact"
       ref={sectionRef}
-      className="section-card-alt relative py-20 px-6 z-40 overflow-hidden"
+      className="relative py-20 px-6 z-40 overflow-hidden"
+      style={{ background: 'hsl(248 15% 96%)' }}
     >
       {/* Parallax Shape */}
       <div

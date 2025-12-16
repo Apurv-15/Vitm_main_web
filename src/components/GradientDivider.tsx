@@ -4,7 +4,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function GradientDivider() {
+interface GradientDividerProps {
+  variant?: 'white-to-dark' | 'dark-to-white' | 'white-to-gray' | 'gray-to-white';
+}
+
+export default function GradientDivider({ variant = 'white-to-dark' }: GradientDividerProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const shape1Ref = useRef<HTMLDivElement>(null);
   const shape2Ref = useRef<HTMLDivElement>(null);
@@ -37,43 +41,42 @@ export default function GradientDivider() {
     return () => ctx.revert();
   }, []);
 
+  const gradients = {
+    'white-to-dark': 'linear-gradient(180deg, #ffffff 0%, #e8eef5 15%, #1a2744 50%, #0f1a2e 70%, #ffffff 100%)',
+    'dark-to-white': 'linear-gradient(180deg, #0a0f1a 0%, #0f1a2e 30%, #1a2744 50%, #e8eef5 85%, #ffffff 100%)',
+    'white-to-gray': 'linear-gradient(180deg, #ffffff 0%, #e8eef5 20%, #1a2744 50%, #e8eef5 80%, #f5f5f7 100%)',
+    'gray-to-white': 'linear-gradient(180deg, #f5f5f7 0%, #e8eef5 20%, #1a2744 50%, #e8eef5 80%, #ffffff 100%)',
+  };
+
   return (
     <div
       ref={sectionRef}
-      className="relative h-[40vh] overflow-hidden z-5"
+      className="relative h-[50vh] overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #0a0f1a 0%, #0f1a2e 30%, #1a2744 50%, #0f1a2e 70%, #ffffff 100%)',
+        background: gradients[variant],
       }}
     >
       {/* Parallax floating shapes */}
       <div
         ref={shape1Ref}
-        className="absolute w-32 h-32 rounded-full opacity-30 blur-xl top-1/4 left-1/4"
+        className="absolute w-32 h-32 rounded-full opacity-40 blur-xl top-1/4 left-1/4"
         style={{ background: 'radial-gradient(circle, #4285F4 0%, transparent 70%)' }}
       />
       <div
         ref={shape2Ref}
-        className="absolute w-48 h-48 rounded-full opacity-20 blur-2xl top-1/3 right-1/4"
+        className="absolute w-48 h-48 rounded-full opacity-30 blur-2xl top-1/3 right-1/4"
         style={{ background: 'radial-gradient(circle, #EA4335 0%, transparent 70%)' }}
       />
       <div
         ref={shape3Ref}
-        className="absolute w-24 h-24 rounded-full opacity-25 blur-xl bottom-1/4 left-1/2"
+        className="absolute w-24 h-24 rounded-full opacity-35 blur-xl bottom-1/4 left-1/2"
         style={{ background: 'radial-gradient(circle, #34A853 0%, transparent 70%)' }}
       />
 
-      {/* Wave SVG at bottom */}
-      <svg
-        className="absolute bottom-0 left-0 w-full"
-        viewBox="0 0 1440 120"
-        fill="none"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0 120L60 110C120 100 240 80 360 75C480 70 600 80 720 85C840 90 960 90 1080 85C1200 80 1320 70 1380 65L1440 60V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-          fill="white"
-        />
-      </svg>
+      {/* Floating dots */}
+      <div className="absolute top-1/3 left-1/3 w-2 h-2 rounded-full bg-gdg-blue/50" />
+      <div className="absolute top-1/2 right-1/3 w-3 h-3 rounded-full bg-gdg-yellow/40" />
+      <div className="absolute bottom-1/3 left-1/2 w-2 h-2 rounded-full bg-gdg-green/50" />
     </div>
   );
 }
