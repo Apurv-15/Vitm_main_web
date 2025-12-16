@@ -6,10 +6,10 @@ import { motion } from 'framer-motion';
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { value: '500+', label: 'Members', color: 'gdg-blue' },
-  { value: '50+', label: 'Events', color: 'gdg-red' },
-  { value: '20+', label: 'Workshops', color: 'gdg-yellow' },
-  { value: '10+', label: 'Hackathons', color: 'gdg-green' },
+  { value: '500+', label: 'Members', color: 'bg-gdg-blue' },
+  { value: '50+', label: 'Events', color: 'bg-gdg-red' },
+  { value: '20+', label: 'Workshops', color: 'bg-gdg-yellow' },
+  { value: '10+', label: 'Hackathons', color: 'bg-gdg-green' },
 ];
 
 const features = [
@@ -35,6 +35,9 @@ export default function AboutSection() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
+  const shape1Ref = useRef<HTMLDivElement>(null);
+  const shape2Ref = useRef<HTMLDivElement>(null);
+  const shape3Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -89,6 +92,23 @@ export default function AboutSection() {
           },
         }
       );
+
+      // Parallax shapes
+      const shapes = [shape1Ref.current, shape2Ref.current, shape3Ref.current];
+      shapes.forEach((shape, i) => {
+        if (shape) {
+          gsap.to(shape, {
+            y: (i + 1) * -100,
+            rotation: (i + 1) * 15,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1 + i * 0.5,
+            },
+          });
+        }
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -98,56 +118,68 @@ export default function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-32 px-6 overflow-hidden"
+      className="section-card relative py-32 px-6 overflow-hidden z-10"
     >
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-glow-radial opacity-50 pointer-events-none" />
+      {/* Parallax Shapes */}
+      <div
+        ref={shape1Ref}
+        className="parallax-shape w-64 h-64 rounded-full bg-gdg-blue/10 blur-3xl -top-20 -left-20"
+      />
+      <div
+        ref={shape2Ref}
+        className="parallax-shape w-48 h-48 rounded-full bg-gdg-red/10 blur-2xl top-1/3 -right-10"
+      />
+      <div
+        ref={shape3Ref}
+        className="parallax-shape w-32 h-32 rounded-full bg-gdg-green/10 blur-xl bottom-20 left-1/4"
+      />
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Title */}
         <div ref={titleRef} className="text-center mb-20">
-          <span className="inline-block px-4 py-1.5 rounded-full glass-nav text-xs text-muted-foreground uppercase tracking-widest mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-gray-100 text-xs text-gray-600 uppercase tracking-widest mb-6">
             About Us
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             Empowering Developers
             <br />
-            <span className="gdg-gradient-text">at VIT</span>
+            <span className="text-gdg-blue">at VIT</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             We are a student community backed by Google Developers, focused on learning, teaching, and building with cutting-edge technologies.
           </p>
         </div>
 
         {/* Stats */}
         <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
-          {stats.map((stat, index) => (
+          {stats.map((stat) => (
             <motion.div
               key={stat.label}
               whileHover={{ scale: 1.05 }}
-              className="glass-card p-6 text-center group cursor-default"
+              className="card-light p-6 text-center group cursor-default"
             >
-              <div className={`text-3xl sm:text-4xl md:text-5xl font-bold text-${stat.color} mb-2`}>
+              <div className={`w-3 h-3 rounded-full ${stat.color} mx-auto mb-3`} />
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2">
                 {stat.value}
               </div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
+              <div className="text-sm text-gray-500">{stat.label}</div>
             </motion.div>
           ))}
         </div>
 
         {/* Features */}
         <div ref={featuresRef} className="grid md:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <motion.div
               key={feature.title}
               whileHover={{ y: -8 }}
-              className="glass-card p-8 group cursor-default"
+              className="card-light p-8 group cursor-default"
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-gdg-blue transition-colors">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-gray-600 text-sm leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>

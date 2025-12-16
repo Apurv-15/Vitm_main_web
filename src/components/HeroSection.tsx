@@ -80,7 +80,7 @@ export default function HeroSection() {
         >
           Build. Learn.
           <br />
-          <span className="gdg-gradient-text">Grow Together.</span>
+          <span className="text-white">Grow Together.</span>
         </h1>
 
         {/* Subtitle */}
