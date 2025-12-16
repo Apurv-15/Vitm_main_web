@@ -118,7 +118,7 @@ export default function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="section-card relative py-32 px-6 overflow-hidden z-10"
+      className="relative py-32 px-6 overflow-hidden z-10 bg-white"
     >
       {/* Parallax Shapes */}
       <div

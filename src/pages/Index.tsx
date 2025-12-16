@@ -38,10 +38,13 @@ export default function Index() {
       <main className={`relative bg-background text-foreground overflow-x-hidden ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}>
         <Navbar />
         <HeroSection />
-        <GradientDivider />
+        <GradientDivider variant="dark-to-white" />
         <AboutSection />
+        <GradientDivider variant="white-to-gray" />
         <TimelineSection />
+        <GradientDivider variant="gray-to-white" />
         <TeamSection />
+        <GradientDivider variant="white-to-gray" />
         <Footer />
       </main>
     </>

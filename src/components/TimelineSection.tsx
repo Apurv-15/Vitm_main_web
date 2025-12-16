@@ -149,7 +149,8 @@ export default function TimelineSection() {
     <section
       id="timeline"
       ref={sectionRef}
-      className="section-card-alt relative w-full overflow-clip z-20"
+      className="relative w-full overflow-clip z-20"
+      style={{ background: 'hsl(248 15% 96%)' }}
     >
       {/* Parallax Shapes */}
       <div

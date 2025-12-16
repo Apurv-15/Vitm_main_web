@@ -136,7 +136,7 @@ export default function TeamSection() {
     <section
       id="team"
       ref={sectionRef}
-      className="section-card relative py-32 px-6 overflow-hidden z-30"
+      className="relative py-32 px-6 overflow-hidden z-30 bg-white"
     >
       {/* Parallax Shapes */}
       <div
