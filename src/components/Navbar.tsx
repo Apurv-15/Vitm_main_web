@@ -25,28 +25,27 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-3xl px-4"
+      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-4"
     >
-      <nav className={`glass-nav px-6 py-3 transition-all duration-500 ${isScrolled ? 'py-2' : 'py-3'}`}>
-        <div className="flex items-center justify-between">
+      <nav className={`glass-nav px-4 py-3 transition-all duration-500 ${isScrolled ? 'py-2' : 'py-3'}`}>
+        <div className="flex items-center gap-2">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 group">
+          <a href="#home" className="flex items-center gap-2 group pr-4 border-r border-white/10">
             <div className="w-8 h-8 rounded-lg bg-gdg-gradient flex items-center justify-center">
               <span className="text-sm font-bold text-foreground">G</span>
             </div>
-            <span className="font-semibold text-foreground hidden sm:block">GDG VIT</span>
+            <span className="font-semibold text-foreground hidden sm:block text-sm">GDG VIT</span>
           </a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Center Nav Links */}
+          <div className="hidden md:flex items-center gap-1 px-2">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 relative group"
+                className="text-sm text-muted-foreground hover:text-foreground hover:bg-white/5 transition-all duration-300 px-4 py-2 rounded-full"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -54,7 +53,7 @@ export default function Navbar() {
           {/* CTA Button */}
           <a
             href="#contact"
-            className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-foreground text-background text-sm font-medium hover:opacity-90 transition-opacity"
+            className="hidden sm:flex items-center gap-2 px-5 py-2 rounded-full bg-foreground text-background text-sm font-medium hover:opacity-90 transition-opacity ml-2"
           >
             Join Us
           </a>
@@ -62,7 +61,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-foreground ml-2"
             aria-label="Toggle menu"
           >
             <div className="w-5 h-4 flex flex-col justify-between">
@@ -82,20 +81,20 @@ export default function Navbar() {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden mt-4 pb-2"
             >
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-1">
                 {navItems.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+                    className="text-sm text-muted-foreground hover:text-foreground hover:bg-white/5 transition-all py-3 px-4 rounded-xl"
                   >
                     {item.name}
                   </a>
                 ))}
                 <a
                   href="#contact"
-                  className="mt-2 px-4 py-2 rounded-full bg-foreground text-background text-sm font-medium text-center"
+                  className="mt-2 px-4 py-3 rounded-full bg-foreground text-background text-sm font-medium text-center"
                 >
                   Join Us
                 </a>
