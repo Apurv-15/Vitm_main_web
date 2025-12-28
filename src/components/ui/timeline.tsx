@@ -1,5 +1,9 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface TimelineEntry {
   title: string;
@@ -9,6 +13,8 @@ interface TimelineEntry {
 export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const itemsRef = useRef<HTMLDivElement[]>([]);
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
@@ -17,6 +23,62 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       setHeight(rect.height);
     }
   }, [ref]);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Header reveal animation
+      gsap.fromTo(
+        headerRef.current,
+        { 
+          opacity: 0, 
+          y: 100,
+          clipPath: 'inset(100% 0 0 0)',
+        },
+        {
+          opacity: 1,
+          y: 0,
+          clipPath: 'inset(0% 0 0 0)',
+          duration: 1.2,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Timeline items stagger reveal
+      itemsRef.current.forEach((item, index) => {
+        if (item) {
+          gsap.fromTo(
+            item,
+            { 
+              opacity: 0, 
+              x: index % 2 === 0 ? -100 : 100,
+              scale: 0.9,
+            },
+            {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              duration: 1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: item,
+                start: 'top 85%',
+                toggleActions: 'play none none reverse',
+              },
+            }
+          );
+        }
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [data]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -31,7 +93,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full font-sans md:px-10"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
+      <div ref={headerRef} className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
         <span className="inline-block px-4 py-1.5 rounded-full bg-gray-100 text-xs text-gray-600 uppercase tracking-widest mb-6">
           Our Journey
         </span>
@@ -47,6 +109,9 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         {data.map((item, index) => (
           <div
             key={index}
+            ref={(el) => {
+              if (el) itemsRef.current[index] = el;
+            }}
             className="flex justify-start pt-10 md:pt-40 md:gap-10"
           >
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">

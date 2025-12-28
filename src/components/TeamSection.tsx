@@ -74,43 +74,58 @@ export default function TeamSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Enhanced title reveal with clip-path
       gsap.fromTo(
         titleRef.current,
-        { opacity: 0, y: 60 },
+        { 
+          opacity: 0, 
+          y: 100,
+          clipPath: 'inset(100% 0 0 0)',
+        },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          ease: 'power3.out',
+          clipPath: 'inset(0% 0 0 0)',
+          duration: 1.2,
+          ease: 'power4.out',
           scrollTrigger: {
             trigger: titleRef.current,
-            start: 'top 80%',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
           },
         }
       );
 
+      // Cards stagger reveal with 3D effect
       gsap.fromTo(
         cardsRef.current?.children || [],
-        { opacity: 0, y: 80, scale: 0.9 },
+        { 
+          opacity: 0, 
+          y: 120, 
+          scale: 0.8,
+          rotateY: 15,
+        },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.6,
-          stagger: 0.08,
+          rotateY: 0,
+          duration: 0.8,
+          stagger: 0.1,
           ease: 'back.out(1.4)',
           scrollTrigger: {
             trigger: cardsRef.current,
-            start: 'top 75%',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
           },
         }
       );
 
-      // Parallax shapes
+      // Enhanced parallax shapes
       const shapes = [
-        { ref: shape1Ref.current, y: -120, rotation: 25, scrub: 1 },
-        { ref: shape2Ref.current, y: -80, rotation: -20, scrub: 1.5 },
-        { ref: shape3Ref.current, y: -60, rotation: 15, scrub: 2 },
+        { ref: shape1Ref.current, y: -180, rotation: 30, scrub: 1 },
+        { ref: shape2Ref.current, y: -120, rotation: -25, scrub: 1.5 },
+        { ref: shape3Ref.current, y: -80, rotation: 20, scrub: 2 },
       ];
 
       shapes.forEach((shape) => {
@@ -118,6 +133,7 @@ export default function TeamSection() {
           gsap.to(shape.ref, {
             y: shape.y,
             rotation: shape.rotation,
+            scale: 1.2,
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top bottom',

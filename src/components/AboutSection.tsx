@@ -41,65 +41,85 @@ export default function AboutSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Title animation
+      // Enhanced title reveal animation
       gsap.fromTo(
         titleRef.current,
-        { opacity: 0, y: 60 },
+        { 
+          opacity: 0, 
+          y: 100,
+          clipPath: 'inset(100% 0 0 0)',
+        },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          ease: 'power3.out',
+          clipPath: 'inset(0% 0 0 0)',
+          duration: 1.2,
+          ease: 'power4.out',
           scrollTrigger: {
             trigger: titleRef.current,
-            start: 'top 80%',
+            start: 'top 85%',
             end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
           },
         }
       );
 
-      // Stats animation
+      // Stats stagger reveal with scale
       gsap.fromTo(
         statsRef.current?.children || [],
-        { opacity: 0, y: 40, scale: 0.9 },
+        { 
+          opacity: 0, 
+          y: 80, 
+          scale: 0.8,
+          rotateX: 45,
+        },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.6,
-          stagger: 0.1,
+          rotateX: 0,
+          duration: 0.8,
+          stagger: 0.12,
           ease: 'back.out(1.7)',
           scrollTrigger: {
             trigger: statsRef.current,
             start: 'top 80%',
+            toggleActions: 'play none none reverse',
           },
         }
       );
 
-      // Features animation
+      // Features slide up reveal
       gsap.fromTo(
         featuresRef.current?.children || [],
-        { opacity: 0, y: 60 },
+        { 
+          opacity: 0, 
+          y: 100,
+          scale: 0.9,
+        },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          stagger: 0.15,
+          scale: 1,
+          duration: 1,
+          stagger: 0.2,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: featuresRef.current,
-            start: 'top 75%',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
           },
         }
       );
 
-      // Parallax shapes
+      // Enhanced parallax shapes with rotation
       const shapes = [shape1Ref.current, shape2Ref.current, shape3Ref.current];
       shapes.forEach((shape, i) => {
         if (shape) {
           gsap.to(shape, {
-            y: (i + 1) * -100,
-            rotation: (i + 1) * 15,
+            y: (i + 1) * -150,
+            rotation: (i + 1) * 20,
+            scale: 1 + i * 0.1,
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top bottom',
