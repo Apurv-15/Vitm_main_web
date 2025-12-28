@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { motion } from 'framer-motion';
 import ColorBends from './ColorBends';
+import BlurText from './ui/BlurText';
 
 export default function HeroSection() {
-  const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
@@ -19,16 +19,10 @@ export default function HeroSection() {
         { opacity: 1, y: 0, scale: 1, duration: 0.8 }
       )
         .fromTo(
-          titleRef.current,
-          { opacity: 0, y: 60 },
-          { opacity: 1, y: 0, duration: 1 },
-          '-=0.4'
-        )
-        .fromTo(
           subtitleRef.current,
           { opacity: 0, y: 40 },
           { opacity: 1, y: 0, duration: 0.8 },
-          '-=0.6'
+          '+=0.8'
         )
         .fromTo(
           buttonsRef.current,
@@ -73,15 +67,23 @@ export default function HeroSection() {
           <span className="text-sm text-muted-foreground">Welcome to GDG VIT</span>
         </div>
 
-        {/* Title */}
-        <h1
-          ref={titleRef}
-          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-foreground leading-tight tracking-tight mb-6 opacity-0"
-        >
-          Build. Learn.
-          <br />
-          <span className="text-white">Grow Together.</span>
-        </h1>
+        {/* Title with BlurText */}
+        <div className="mb-6">
+          <BlurText
+            text="Build. Learn."
+            delay={150}
+            animateBy="words"
+            direction="top"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight tracking-tight"
+          />
+          <BlurText
+            text="Grow Together."
+            delay={150}
+            animateBy="words"
+            direction="bottom"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight tracking-tight"
+          />
+        </div>
 
         {/* Subtitle */}
         <p
