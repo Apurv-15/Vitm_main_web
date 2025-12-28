@@ -115,11 +115,12 @@ export default function TimelineSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Parallax shapes
+      // Enhanced parallax shapes with scale
       if (shape1Ref.current) {
         gsap.to(shape1Ref.current, {
-          y: -150,
-          rotation: 20,
+          y: -200,
+          rotation: 30,
+          scale: 1.3,
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top bottom',
@@ -130,8 +131,9 @@ export default function TimelineSection() {
       }
       if (shape2Ref.current) {
         gsap.to(shape2Ref.current, {
-          y: -80,
-          rotation: -15,
+          y: -120,
+          rotation: -20,
+          scale: 1.2,
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top bottom',

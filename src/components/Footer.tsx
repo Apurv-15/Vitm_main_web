@@ -30,14 +30,61 @@ const footerLinks = [
 
 export default function Footer() {
   const sectionRef = useRef<HTMLElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const linksRef = useRef<HTMLDivElement>(null);
   const shape1Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // CTA reveal animation
+      gsap.fromTo(
+        ctaRef.current,
+        { 
+          opacity: 0, 
+          y: 100,
+          scale: 0.95,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: ctaRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Links stagger reveal
+      gsap.fromTo(
+        linksRef.current?.children || [],
+        { 
+          opacity: 0, 
+          y: 60,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: linksRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Enhanced parallax shape
       if (shape1Ref.current) {
         gsap.to(shape1Ref.current, {
-          y: -60,
-          rotation: 10,
+          y: -100,
+          rotation: 15,
+          scale: 1.2,
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top bottom',
@@ -66,11 +113,8 @@ export default function Footer() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+        <div
+          ref={ctaRef}
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -88,10 +132,10 @@ export default function Footer() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
-        </motion.div>
+        </div>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div ref={linksRef} className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           {/* Logo & Description */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-3 mb-4">

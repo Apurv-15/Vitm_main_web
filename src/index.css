@@ -105,11 +105,22 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: var(--font-display);
+    overflow-x: hidden;
+  }
+
+  /* Smooth scroll wrapper */
+  .smooth-wrapper {
+    overflow: hidden;
+  }
+
+  .smooth-content {
+    will-change: transform;
   }
 }
 
