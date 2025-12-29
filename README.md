@@ -1,4 +1,4 @@
-# GDG VIT Mumbai - Apple Inspired Website
+# GDG VIT Mumbai
 
 Welcome to the Google Developer Groups (GDG) VIT Mumbai website project. This website features a modern, Apple-inspired design with premium aesthetics, 3D animations, and a responsive layout.
 
