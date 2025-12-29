@@ -42,34 +42,34 @@ export default function GradientDivider({ variant = 'white-to-dark' }: GradientD
   }, []);
 
   const gradients = {
-    'white-to-dark': 'linear-gradient(180deg, #ffffff 0%, #e8eef5 15%, #1a2744 50%, #0f1a2e 70%, #ffffff 100%)',
-    'dark-to-white': 'linear-gradient(180deg, #0a0f1a 0%, #0f1a2e 30%, #1a2744 50%, #e8eef5 85%, #ffffff 100%)',
-    'white-to-gray': 'linear-gradient(180deg, #ffffff 0%, #e8eef5 20%, #1a2744 50%, #e8eef5 80%, #f5f5f7 100%)',
-    'gray-to-white': 'linear-gradient(180deg, #f5f5f7 0%, #e8eef5 20%, #1a2744 50%, #e8eef5 80%, #ffffff 100%)',
+    'white-to-dark': 'linear-gradient(180deg, #ffffff 0%, #f0f4f8 20%, #e2e8f0 40%, #1e293b 70%, #0f172a 100%)',
+    'dark-to-white': 'linear-gradient(180deg, #0f172a 0%, #1e293b 30%, #e2e8f0 60%, #f0f4f8 80%, #ffffff 100%)',
+    'white-to-gray': 'linear-gradient(180deg, #ffffff 0%, #f8fafc 30%, #f1f5f9 60%, #e2e8f0 100%)',
+    'gray-to-white': 'linear-gradient(180deg, #e2e8f0 0%, #f1f5f9 40%, #f8fafc 70%, #ffffff 100%)',
   };
 
   return (
     <div
       ref={sectionRef}
-      className="relative h-[50vh] overflow-hidden"
+      className="relative h-[40vh] overflow-hidden"
       style={{
         background: gradients[variant],
       }}
     >
-      {/* Parallax floating shapes */}
+      {/* Parallax floating shapes - Enhanced Bloom */}
       <div
         ref={shape1Ref}
-        className="absolute w-32 h-32 rounded-full opacity-40 blur-xl top-1/4 left-1/4"
+        className="absolute w-64 h-64 rounded-full opacity-30 blur-3xl top-1/4 left-1/4 mix-blend-screen"
         style={{ background: 'radial-gradient(circle, #4285F4 0%, transparent 70%)' }}
       />
       <div
         ref={shape2Ref}
-        className="absolute w-48 h-48 rounded-full opacity-30 blur-2xl top-1/3 right-1/4"
+        className="absolute w-80 h-80 rounded-full opacity-25 blur-3xl top-1/3 right-1/4 mix-blend-screen"
         style={{ background: 'radial-gradient(circle, #EA4335 0%, transparent 70%)' }}
       />
       <div
         ref={shape3Ref}
-        className="absolute w-24 h-24 rounded-full opacity-35 blur-xl bottom-1/4 left-1/2"
+        className="absolute w-56 h-56 rounded-full opacity-30 blur-3xl bottom-1/4 left-1/2 mix-blend-screen"
         style={{ background: 'radial-gradient(circle, #34A853 0%, transparent 70%)' }}
       />
 

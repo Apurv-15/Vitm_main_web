@@ -44,8 +44,8 @@ export default function AboutSection() {
       // Enhanced title reveal animation
       gsap.fromTo(
         titleRef.current,
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           y: 100,
           clipPath: 'inset(100% 0 0 0)',
         },
@@ -67,9 +67,9 @@ export default function AboutSection() {
       // Stats stagger reveal with scale
       gsap.fromTo(
         statsRef.current?.children || [],
-        { 
-          opacity: 0, 
-          y: 80, 
+        {
+          opacity: 0,
+          y: 80,
           scale: 0.8,
           rotateX: 45,
         },
@@ -92,8 +92,8 @@ export default function AboutSection() {
       // Features slide up reveal
       gsap.fromTo(
         featuresRef.current?.children || [],
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           y: 100,
           scale: 0.9,
         },
@@ -138,7 +138,7 @@ export default function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-32 px-6 overflow-hidden z-10 bg-white"
+      className="relative py-32 px-6 overflow-hidden z-10 bg-gradient-to-b from-white via-slate-50 to-white"
     >
       {/* Parallax Shapes */}
       <div
@@ -176,7 +176,7 @@ export default function AboutSection() {
             <motion.div
               key={stat.label}
               whileHover={{ scale: 1.05 }}
-              className="card-light p-6 text-center group cursor-default"
+              className="glass-card p-6 text-center group cursor-default bg-white/40 border-white/20 hover:bg-white/60 transition-colors"
             >
               <div className={`w-3 h-3 rounded-full ${stat.color} mx-auto mb-3`} />
               <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2">
@@ -193,7 +193,7 @@ export default function AboutSection() {
             <motion.div
               key={feature.title}
               whileHover={{ y: -8 }}
-              className="card-light p-8 group cursor-default"
+              className="glass-card p-8 group cursor-default bg-white/40 border-white/20 hover:bg-white/60 transition-colors"
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-gdg-blue transition-colors">

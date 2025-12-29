@@ -10,23 +10,23 @@ const timelineData = [
     title: "2024",
     content: (
       <div>
-        <p className="mb-6 text-sm md:text-base font-normal text-gray-600">
+        <p className="mb-6 text-sm md:text-base font-normal text-slate-300">
           A groundbreaking year for GDG VIT with record-breaking events and community growth.
         </p>
         <div className="mb-6">
-          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
+          <div className="flex items-center gap-2 text-sm text-slate-200 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-blue" />
             DevFest 2024 - 500+ attendees
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
+          <div className="flex items-center gap-2 text-sm text-slate-200 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-red" />
             Android Study Jam - 200+ developers
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
+          <div className="flex items-center gap-2 text-sm text-slate-200 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-yellow" />
             Cloud Study Jam - 150+ participants
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-800">
+          <div className="flex items-center gap-2 text-sm text-slate-200">
             <span className="w-2 h-2 rounded-full bg-gdg-green" />
             Flutter Forward - 180+ attendees
           </div>
@@ -46,19 +46,19 @@ const timelineData = [
     title: "2023",
     content: (
       <div>
-        <p className="mb-6 text-sm md:text-base font-normal text-gray-600">
+        <p className="mb-6 text-sm md:text-base font-normal text-slate-300">
           Expanded our reach with hybrid events and international speaker sessions.
         </p>
         <div className="mb-6">
-          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
+          <div className="flex items-center gap-2 text-sm text-slate-200 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-green" />
             Google I/O Extended - Virtual & In-person
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
+          <div className="flex items-center gap-2 text-sm text-slate-200 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-yellow" />
             Compose Camp - 300+ participants
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-800">
+          <div className="flex items-center gap-2 text-sm text-slate-200">
             <span className="w-2 h-2 rounded-full bg-gdg-blue" />
             Web Development Bootcamp - 6 weeks
           </div>
@@ -78,19 +78,19 @@ const timelineData = [
     title: "2022",
     content: (
       <div>
-        <p className="mb-6 text-sm md:text-base font-normal text-gray-600">
+        <p className="mb-6 text-sm md:text-base font-normal text-slate-300">
           Restarted in-person events post-pandemic with renewed energy and enthusiasm.
         </p>
         <div className="mb-6">
-          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
+          <div className="flex items-center gap-2 text-sm text-slate-200 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-red" />
             DevFest 2022 - First in-person event
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-800 mb-2">
+          <div className="flex items-center gap-2 text-sm text-slate-200 mb-2">
             <span className="w-2 h-2 rounded-full bg-gdg-blue" />
             ML Study Jam - AI/ML workshops
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-800">
+          <div className="flex items-center gap-2 text-sm text-slate-200">
             <span className="w-2 h-2 rounded-full bg-gdg-green" />
             Hackathon 2022 - 50+ projects
           </div>
@@ -151,8 +151,7 @@ export default function TimelineSection() {
     <section
       id="timeline"
       ref={sectionRef}
-      className="relative w-full overflow-clip z-20"
-      style={{ background: 'hsl(248 15% 96%)' }}
+      className="relative w-full overflow-clip z-20 bg-gradient-to-b from-[#0f172a] via-[#1e293b] to-[#0f172a]"
     >
       {/* Parallax Shapes */}
       <div

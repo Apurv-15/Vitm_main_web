@@ -22,15 +22,15 @@ export default function Navbar() {
 
   return (
     <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ y: -100, x: "-50%", opacity: 0 }}
+      animate={{ y: 0, x: "-50%", opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-4"
+      className="fixed top-6 left-1/2 z-50 px-4"
     >
       <nav className={`glass-nav px-4 py-3 transition-all duration-500 ${isScrolled ? 'py-2' : 'py-3'}`}>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between w-full">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2 group pr-4 border-r border-white/10">
+          <a href="#home" className="flex items-center gap-2 group">
             <div className="w-8 h-8 rounded-lg bg-gdg-gradient flex items-center justify-center">
               <span className="text-sm font-bold text-foreground">G</span>
             </div>
@@ -38,7 +38,7 @@ export default function Navbar() {
           </a>
 
           {/* Center Nav Links */}
-          <div className="hidden md:flex items-center gap-1 px-2">
+          <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <a
                 key={item.name}
@@ -50,26 +50,28 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <a
-            href="#contact"
-            className="hidden sm:flex items-center gap-2 px-5 py-2 rounded-full bg-foreground text-background text-sm font-medium hover:opacity-90 transition-opacity ml-2"
-          >
-            Join Us
-          </a>
+          {/* CTA Button & Mobile Menu */}
+          <div className="flex items-center gap-2">
+            <a
+              href="#contact"
+              className="hidden sm:flex items-center gap-2 px-5 py-2 rounded-full bg-foreground text-background text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              Join Us
+            </a>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground ml-2"
-            aria-label="Toggle menu"
-          >
-            <div className="w-5 h-4 flex flex-col justify-between">
-              <span className={`block h-0.5 w-full bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
-              <span className={`block h-0.5 w-full bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block h-0.5 w-full bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
-            </div>
-          </button>
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 text-foreground"
+              aria-label="Toggle menu"
+            >
+              <div className="w-5 h-4 flex flex-col justify-between">
+                <span className={`block h-0.5 w-full bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
+                <span className={`block h-0.5 w-full bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
+                <span className={`block h-0.5 w-full bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+              </div>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

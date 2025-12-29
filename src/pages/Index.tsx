@@ -24,7 +24,7 @@ export default function Index() {
     // Initialize smooth scroll effect
     const wrapper = wrapperRef.current;
     const content = mainRef.current;
-    
+
     if (!wrapper || !content) return;
 
     // Set up GSAP ScrollTrigger for smooth scrolling feel
@@ -50,7 +50,7 @@ export default function Index() {
     };
 
     document.addEventListener('click', handleAnchorClick);
-    
+
     // Refresh on load
     ScrollTrigger.refresh();
 
@@ -71,11 +71,11 @@ export default function Index() {
         <HeroSection />
         <GradientDivider variant="dark-to-white" />
         <AboutSection />
-        <GradientDivider variant="white-to-gray" />
+        <GradientDivider variant="white-to-dark" />
         <TimelineSection />
-        <GradientDivider variant="gray-to-white" />
+        <GradientDivider variant="dark-to-white" />
         <TeamSection />
-        <GradientDivider variant="white-to-gray" />
+        <GradientDivider variant="white-to-dark" />
         <Footer />
       </main>
     </div>

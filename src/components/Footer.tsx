@@ -39,8 +39,8 @@ export default function Footer() {
       // CTA reveal animation
       gsap.fromTo(
         ctaRef.current,
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           y: 100,
           scale: 0.95,
         },
@@ -61,8 +61,8 @@ export default function Footer() {
       // Links stagger reveal
       gsap.fromTo(
         linksRef.current?.children || [],
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           y: 60,
         },
         {
@@ -102,8 +102,7 @@ export default function Footer() {
     <footer
       id="contact"
       ref={sectionRef}
-      className="relative py-20 px-6 z-40 overflow-hidden"
-      style={{ background: 'hsl(248 15% 96%)' }}
+      className="relative py-20 px-6 z-40 overflow-hidden bg-[#0f172a]"
     >
       {/* Parallax Shape */}
       <div
@@ -117,15 +116,15 @@ export default function Footer() {
           ref={ctaRef}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
             Ready to <span className="text-gdg-blue">Join Us</span>?
           </h2>
-          <p className="text-gray-600 text-lg mb-8 max-w-xl mx-auto">
+          <p className="text-slate-300 text-lg mb-8 max-w-xl mx-auto">
             Become part of our growing community of developers and tech enthusiasts.
           </p>
           <a
             href="#"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gray-900 text-white font-semibold hover:bg-gdg-blue transition-all duration-300 hover:scale-105"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-gray-900 font-semibold hover:bg-gdg-blue hover:text-white transition-all duration-300 hover:scale-105"
           >
             Get Started Today
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,9 +141,9 @@ export default function Footer() {
               <div className="w-10 h-10 rounded-xl bg-gdg-blue flex items-center justify-center">
                 <span className="text-lg font-bold text-white">G</span>
               </div>
-              <span className="font-semibold text-gray-900 text-lg">GDG VIT</span>
+              <span className="font-semibold text-white text-lg">GDG VIT</span>
             </div>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-slate-400 mb-4">
               Building the future of technology, one developer at a time.
             </p>
             {/* Social Links */}
@@ -164,13 +163,13 @@ export default function Footer() {
           {/* Footer Links */}
           {footerLinks.map((group) => (
             <div key={group.title}>
-              <h4 className="font-semibold text-gray-900 mb-4">{group.title}</h4>
+              <h4 className="font-semibold text-white mb-4">{group.title}</h4>
               <ul className="space-y-2">
                 {group.links.map((link) => (
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-sm text-gray-600 hover:text-gdg-blue transition-colors"
+                      className="text-sm text-slate-400 hover:text-gdg-blue transition-colors"
                     >
                       {link}
                     </a>
@@ -183,7 +182,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-slate-500">
             © 2024 GDG VIT. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
